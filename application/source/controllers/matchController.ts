@@ -51,11 +51,17 @@ export async function newMatch(req:any, res:any){
 
             //check if the user has token to open the match
             const token:any=await modelUser.getToken(player)
-           
-            if(token != null && Number(token.token)>=0.40){
+
+            // <----------------------------------------------------------------------------------------------------------------------------------------------------->
+            // PART 2/7
+            //è necessario validare la richiesta di creazione della partita. Per ogni partita viene addebitato un numero di token in accordo con quanto segue:
+            //        0.50 all’atto della creazione
+            //        0.025 per ogni mossa (anche IA)
+            
+            if(token != null && Number(token.token)>=0.50){
                 
-                //decrese token for player1
-                await modelUser.setToken(player, (Number(token.token)-0.40)) 
+                //Reduce -0.5 the token for player 1
+                await modelUser.setToken(player, (Number(token.token)-0.50)) 
 
                 console.log(player + " vs " + challenger)
                 //get clean new board configuration
@@ -209,10 +215,12 @@ export async function checkWinner(boardConfiguration:any, playerOpenMatch:any){
     return winner
 }
 
-
+// <----------------------------------------------------------------------------------------------------------------------------------------------------->
+// PART 2/7
+// Reduce -0.025 for every move
 export async function doMove(matchid:any ,playerDecreaseToken:string, moveFrom:string, moveTo:string){
     //decrese token to player 1
-    decreseToken(playerDecreaseToken, 0.01)
+    decreseToken(playerDecreaseToken, 0.025)
     //get lastBoard configuration to do move
     var boardConfiguration = await modelMoves.getLastBoardConfiguration(matchid)    
     //do the move
