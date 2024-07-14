@@ -19,12 +19,14 @@
 
 ## Descrizione del progetto:
 
-Si è realizzato un sistema che consente di gestire il gioco degli scacchi. In particolare, il sistema si basa su un utente (sempre autenticato con JWT) che gioca contro l’intelligenza artificiale. 
+Si è realizzato un sistema che consente di gestire il gioco degli scacchi. 
+In particolare, il sistema si basa su un utente (sempre autenticato con JWT) che gioca contro l’intelligenza artificiale. 
 Ci potevano essere più partite attive in un dato momento, ma un utente poteva partecipare a una e una sola partita alla volta.
 
     • Una nuova partita è stata creata utilizzando l'engine per il gioco degli scacchi js-chess. https://www.npmjs.com/package/js-chess-engine ; la partita può essere:
         ◦ Utente contro intelligenza artificiale (IA) scegliendo il livello di difficoltà.
-    • In particolare, è necessario validare la richiesta di creazione della partita. Per ogni partita viene addebitato un numero di token in accordo con quanto segue:
+    • In particolare, è necessario validare la richiesta di creazione della partita. 
+    Per ogni partita viene addebitato un numero di token in accordo con quanto segue:
             ▪ 0.50 all’atto della creazione
             ▪ 0.025 per ogni mossa (anche IA)
         ◦ Il modello può essere creato se c’è credito sufficiente ad esaudire la richiesta (se il credito durante la partita scende sotto lo zero si può continuare comunque).
@@ -43,10 +45,44 @@ Prevedere una rotta per l’utente con ruolo admin che consenta di effettuare la
 Il numero residuo di token deve essere memorizzato nel db sopra citato.
 I dati di cui sopra devono essere memorizzati in un database esterno interfacciato con Sequelize. La scelta del DB è a discrezione degli studenti.
 
-
 > [!NOTE]
 > JWT (JSON Web Token) è un metodo utilizzato per trasmettere informazioni in modo sicuro tra le parti come oggetti JSON. È comunemente usato per l'autenticazione e l'autorizzazione degli utenti nelle applicazioni web, permettendo la verifica dell'identità e dei permessi senza dover inviare le credenziali ad ogni richiesta.
 
+> [!TIP]
+> Si chiede di utilizzare le funzionalità di middleware.
+
+> [!TIP]
+> Si chiede di gestire eventuali errori mediante gli strati middleware sollevando le opportune eccezioni.
+
+> [!TIP]
+> Si chiede di commentare opportunamente il codice.
+
+> [!NOTE]
+> Nello sviluppo del progetto è richiesto l’utilizzo di Design Pattern che dovranno essere documentati opportunamente nel Readme.MD.
+ Implementazione in typescript.
+>I token JWT da usare possono essere generati attraverso il seguente link: https://jwt.io/   (token JWT non deve contenere il payload della richiesta, ma solo i dati strettamente necessari per autenticare ed autorizzare le richieste).
+La chiavi da usare lato back-end devono essere memorizzata un file .env
+
+### Specifiche Repository:
+
+    • Il codice deve essere reso disponibile su piattaforma github con repo pubblico
+    • Nel repository è obbligatario inserire un Readme.md che descriva:
+        ◦ Obiettivo del progetto
+        ◦ Progettazione
+            ▪ diagrammi UML (casi d’uso, diagrammi delle sequenze)
+            ▪ descrizione dei pattern usati motivandone la scelta
+        ◦ Come avviare il progetto mediante docker-compose per comporre i servizi richiesti (fornire tutti i file neceessari).
+        ◦ Test del progetto mediante chiamate effettuate Postman / Newman (fornire collection)
+    • Il Readme.MD può essere redatto in lingua italiana o inglese (non vi saranno differenziazioni nel processo di valutazione)
+
+### Specifiche Consegna:
+    • La consegna avviene esclusivamente mediante moodle all’indirizzo di seguito riportato dove dovranno essere indicati:
+        ◦ URL del repository pubblico
+        ◦ Commit id che verrà usata dal docente per effettuare la valutazione.
+        ◦ Data per lo svolgimento dell’esame
+    • Indirizzo per la consegna: https://learn.univpm.it/mod/assign/view.php?id=531167 
+
+<!--
 > [!TIP]
 > Helpful advice for doing things better or more easily.
 
@@ -104,6 +140,7 @@ class _CodeEditorState extends State<CodeEditor> {
   }
 }
 ```
+-->
 
 # JS-CHESS-ENGINE
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/josefjadrny/js-chess-engine)
