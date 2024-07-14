@@ -19,8 +19,33 @@
 
 ## Descrizione del progetto:
 
+Si è realizzato un sistema che consente di gestire il gioco degli scacchi. In particolare, il sistema si basa su un utente (sempre autenticato con JWT) che gioca contro l’intelligenza artificiale. 
+Ci potevano essere più partite attive in un dato momento, ma un utente poteva partecipare a una e una sola partita alla volta.
+
+    • Una nuova partita è stata creata utilizzando l'engine per il gioco degli scacchi js-chess. https://www.npmjs.com/package/js-chess-engine ; la partita può essere:
+        ◦ Utente contro intelligenza artificiale (IA) scegliendo il livello di difficoltà.
+    • In particolare, è necessario validare la richiesta di creazione della partita. Per ogni partita viene addebitato un numero di token in accordo con quanto segue:
+            ▪ 0.50 all’atto della creazione
+            ▪ 0.025 per ogni mossa (anche IA)
+        ◦ Il modello può essere creato se c’è credito sufficiente ad esaudire la richiesta (se il credito durante la partita scende sotto lo zero si può continuare comunque).
+    • Creare la rotta per effettuare una mossa in una data partita verificando se questa è ammissibile o meni (si consiglia di valutare quanto presente in Board Configuration – JSON)
+    • Creare una rotta per verificare le partite svolte riportando se sono state vinte o perse il numero di mosse totali, filtrando anche per data di avvio della partita (si ponga attenzione alla validazione delle date)
+    • Creare una rotta per valutare lo stato di una data partita (di chi è il turno, se è terminata, scacco, scacco matto,…); una partita si considera chiusa quando:
+        ◦ C’è uno scacco matto.
+        ◦ L’utente abbandona.
+        ◦ Per ogni partita vinta al giocatore si dà 1 punto; per ogni partita interrotta -0.5 punti;
+    • Creare una rotta per restituire lo storico delle mosse di una data partita con la possibilità di esportare in formato JSON
+    • Restituire la classifica dei giocatori dando la possibilità di scegliere l’ordinamento ascendente / discendente. Questa rotta è pubblica e non deve essere autenticata.
+Le richieste devono essere validate (es. utente che scelga un evento che non esistente).
+Ogni utente autenticato (ovvero con JWT) ha un numero di token (valore iniziale impostato nel seed del database). 
+Nel caso di token terminati ogni richiesta da parte dello stesso utente deve restituire 401 Unauthorized. 
+Prevedere una rotta per l’utente con ruolo admin che consenta di effettuare la ricarica per un utente fornendo la mail ed il nuovo “credito” (sempre mediante JWT). I token JWT devono contenere i dati essenziali.
+Il numero residuo di token deve essere memorizzato nel db sopra citato.
+I dati di cui sopra devono essere memorizzati in un database esterno interfacciato con Sequelize. La scelta del DB è a discrezione degli studenti.
+
+
 > [!NOTE]
-> Useful information that users should know, even when skimming content.
+> JWT (JSON Web Token) è un metodo utilizzato per trasmettere informazioni in modo sicuro tra le parti come oggetti JSON. È comunemente usato per l'autenticazione e l'autorizzazione degli utenti nelle applicazioni web, permettendo la verifica dell'identità e dei permessi senza dover inviare le credenziali ad ogni richiesta.
 
 > [!TIP]
 > Helpful advice for doing things better or more easily.
