@@ -93,19 +93,26 @@ export async function newMatch(req:any, res:any){
     return result
 }
 
+// <----------------------------------------------------------------------------------------------------------------------------------------------------->
+// PART 3/7
+// Creare la rotta per effettuare una mossa in una data partita verificando se questa è ammissibile o meni (si consiglia di valutare quanto presente in Board Configuration – JSON)
+//
+
 export async function move(req:any, res:any){
     var result:any
 
     try{
-
-        //get user email from jwt
+        // Get the eMail address of the user from JWT
+        // This part decodes a JSON Web Token (JWT) and extracts the email from it. 
+        // Here’s a detailed breakdown of what each part of the code does:
         const decoded:any = <string>Jwt.decode(req.headers.authorization)
         var player = decoded.email
 
-        //get the open match for the player
+        // Get the open match for the player
         const playerOpenMatch:any = await modelMatches.getOpenMatchByUser(player)
         var boardConfiguration= await modelMoves.getLastBoardConfiguration(playerOpenMatch.matchid)
-        //if the match is vs AI check if AI move level is between 0 and 4
+        
+        // If the match is vs AI check if AI move level is between 0 and 4
         if(playerOpenMatch.player2 !== null || (req.body.level >= 0 && req.body.level <=4) ){
             
             if((player == playerOpenMatch.player1 && boardConfiguration.turn =="white") || (player == playerOpenMatch.player2 && boardConfiguration.turn =="black")){
