@@ -1,3 +1,9 @@
+![GitHub package.json version](https://img.shields.io/github/package-json/v/josefjadrny/js-chess-engine)
+![Test](https://raw.githubusercontent.com/josefjadrny/js-chess-engine/master/test/badge.svg?sanitize=true)
+![CI](https://github.com/josefjadrny/js-chess-engine/actions/workflows/main.yml/badge.svg?branch=master)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 # Corso Programmazione Avanzata
 
 ## Le seguenti librerie e framework sono stati utilizzati per il back-end:
