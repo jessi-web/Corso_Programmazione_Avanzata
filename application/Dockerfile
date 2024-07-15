@@ -1,6 +1,7 @@
 FROM node:lts-stretch-slim
 
-WORKDIR /home/node/app
+#WORKDIR /home/node/app
+WORKDIR /home/ubuntu/Corso_Programmazione_Avanzata/application
 COPY ./Package*.json ./
 COPY ./Certificates ./Certificates
 
