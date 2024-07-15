@@ -61,7 +61,7 @@ I dati di cui sopra devono essere memorizzati in un database esterno interfaccia
 > Nello sviluppo del progetto è richiesto l’utilizzo di Design Pattern che dovranno essere documentati opportunamente nel Readme.MD.
  Implementazione in typescript.
 >I token JWT da usare possono essere generati attraverso il seguente link: https://jwt.io/   (token JWT non deve contenere il payload della richiesta, ma solo i dati strettamente necessari per autenticare ed autorizzare le richieste).
-La chiavi da usare lato back-end devono essere memorizzata un file .env
+Le chiavi da usare lato back-end devono essere memorizzata un file .env
 
 ### Specifiche Repository:
 
