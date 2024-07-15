@@ -1,12 +1,15 @@
 FROM node:lts-stretch-slim
 
-#WORKDIR /home/node/app
-WORKDIR /home/ubuntu/Corso_Programmazione_Avanzata/application
-COPY ./Package*.json ./
+WORKDIR /home/node/app
+COPY ./package*.json ./
 COPY ./Certificates ./Certificates
 
-#RUN npm install --global nodemon
+# Install dependencies
 RUN npm install
 RUN npm install -g ts-node typescript '@types/node'
 
-CMD ["ts-node","source/index.ts"]
+# Copy the rest of the application
+COPY . .
+
+CMD ["ts-node", "source/index.ts"]
+
